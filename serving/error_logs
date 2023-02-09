@@ -1,0 +1,389 @@
+[hadoop@ip-172-31-47-204 ~]$ spark-submit --packages io.delta:delta-core_2.12:2.0.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"  --jars /usr/share/aws/redshift/jdbc/RedshiftJDBC.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-redshift.jar,/usr/share/aws/redshift/spark-redshift/lib/spark-avro.jar,/usr/share/aws/redshift/spark-redshift/lib/minimal-json.jar job-spark-app-emr-redshift.py
+:: loading settings :: url = jar:file:/usr/lib/spark/jars/ivy-2.5.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /home/hadoop/.ivy2/cache
+The jars for the packages stored in: /home/hadoop/.ivy2/jars
+io.delta#delta-core_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-1f9fe5af-0dcd-41e9-a241-8fdab651bf1c;1.0
+	confs: [default]
+	found io.delta#delta-core_2.12;2.0.0 in central
+	found io.delta#delta-storage;2.0.0 in central
+	found org.antlr#antlr4-runtime;4.8 in central
+	found org.codehaus.jackson#jackson-core-asl;1.9.13 in central
+downloading https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.0.0/delta-core_2.12-2.0.0.jar ...
+	[SUCCESSFUL ] io.delta#delta-core_2.12;2.0.0!delta-core_2.12.jar (338ms)
+downloading https://repo1.maven.org/maven2/io/delta/delta-storage/2.0.0/delta-storage-2.0.0.jar ...
+	[SUCCESSFUL ] io.delta#delta-storage;2.0.0!delta-storage.jar (10ms)
+downloading https://repo1.maven.org/maven2/org/antlr/antlr4-runtime/4.8/antlr4-runtime-4.8.jar ...
+	[SUCCESSFUL ] org.antlr#antlr4-runtime;4.8!antlr4-runtime.jar (44ms)
+downloading https://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar ...
+	[SUCCESSFUL ] org.codehaus.jackson#jackson-core-asl;1.9.13!jackson-core-asl.jar (29ms)
+:: resolution report :: resolve 1688ms :: artifacts dl 448ms
+	:: modules in use:
+	io.delta#delta-core_2.12;2.0.0 from central in [default]
+	io.delta#delta-storage;2.0.0 from central in [default]
+	org.antlr#antlr4-runtime;4.8 from central in [default]
+	org.codehaus.jackson#jackson-core-asl;1.9.13 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   4   |   4   |   4   |   0   ||   4   |   4   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-1f9fe5af-0dcd-41e9-a241-8fdab651bf1c
+	confs: [default]
+	4 artifacts copied, 0 already retrieved (3687kB/41ms)
+23/02/09 14:51:40 INFO SparkContext: Running Spark version 3.3.0-amzn-1
+23/02/09 14:51:40 INFO ResourceUtils: ==============================================================
+23/02/09 14:51:40 INFO ResourceUtils: No custom resources configured for spark.driver.
+23/02/09 14:51:40 INFO ResourceUtils: ==============================================================
+23/02/09 14:51:40 INFO SparkContext: Submitted application: job-1-spark
+23/02/09 14:51:40 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 4, script: , vendor: , memory -> name: memory, amount: 4269, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+23/02/09 14:51:40 INFO ResourceProfile: Limiting resource is cpus at 4 tasks per executor
+23/02/09 14:51:40 INFO ResourceProfileManager: Added ResourceProfile id: 0
+23/02/09 14:51:41 INFO SecurityManager: Changing view acls to: hadoop
+23/02/09 14:51:41 INFO SecurityManager: Changing modify acls to: hadoop
+23/02/09 14:51:41 INFO SecurityManager: Changing view acls groups to: 
+23/02/09 14:51:41 INFO SecurityManager: Changing modify acls groups to: 
+23/02/09 14:51:41 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+23/02/09 14:51:41 INFO Utils: Successfully started service 'sparkDriver' on port 43721.
+23/02/09 14:51:41 INFO SparkEnv: Registering MapOutputTracker
+23/02/09 14:51:41 INFO SparkEnv: Registering BlockManagerMaster
+23/02/09 14:51:41 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+23/02/09 14:51:41 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+23/02/09 14:51:41 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+23/02/09 14:51:42 INFO DiskBlockManager: Created local directory at /mnt/tmp/blockmgr-cb8408e2-42f2-48f8-a759-99aff5baeaec
+23/02/09 14:51:42 INFO MemoryStore: MemoryStore started with capacity 912.3 MiB
+23/02/09 14:51:42 INFO SparkEnv: Registering OutputCommitCoordinator
+23/02/09 14:51:42 INFO SubResultCacheManager: Sub-result caches are disabled.
+23/02/09 14:51:42 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+23/02/09 14:51:43 INFO Utils: Using 50 preallocated executors (minExecutors: 0). Set spark.dynamicAllocation.preallocateExecutors to `false` disable executor preallocation.
+23/02/09 14:51:43 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at ip-172-31-47-204.ec2.internal/172.31.47.204:8032
+23/02/09 14:51:45 INFO Configuration: resource-types.xml not found
+23/02/09 14:51:45 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+23/02/09 14:51:45 INFO Client: Verifying our application has not requested more than the maximum memory capability of the cluster (6144 MB per container)
+23/02/09 14:51:45 INFO Client: Will allocate AM container, with 896 MB memory including 384 MB overhead
+23/02/09 14:51:45 INFO Client: Setting up container launch context for our AM
+23/02/09 14:51:45 INFO Client: Setting up the launch environment for our AM container
+23/02/09 14:51:45 INFO Client: Preparing resources for our AM container
+23/02/09 14:51:45 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+23/02/09 14:51:50 INFO Client: Uploading resource file:/mnt/tmp/spark-bb254b8c-b8b4-4677-840c-d33ae92df8d2/__spark_libs__8898313426521857153.zip -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/__spark_libs__8898313426521857153.zip
+23/02/09 14:51:54 INFO Client: Uploading resource file:/usr/share/aws/redshift/jdbc/redshift-jdbc42-2.1.0.9.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/redshift-jdbc42-2.1.0.9.jar
+23/02/09 14:51:54 INFO Client: Uploading resource file:/usr/share/aws/redshift/spark-redshift/lib/spark-redshift_2.12-5.1.0-amzn-0.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/spark-redshift_2.12-5.1.0-amzn-0.jar
+23/02/09 14:51:54 INFO Client: Uploading resource file:/usr/share/aws/redshift/spark-redshift/lib/spark-avro_2.12-3.3.0-amzn-1.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/spark-avro_2.12-3.3.0-amzn-1.jar
+23/02/09 14:51:55 INFO Client: Uploading resource file:/usr/share/aws/redshift/spark-redshift/lib/minimal-json-0.9.4.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/minimal-json-0.9.4.jar
+23/02/09 14:51:55 INFO Client: Uploading resource file:/home/hadoop/.ivy2/jars/io.delta_delta-core_2.12-2.0.0.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/io.delta_delta-core_2.12-2.0.0.jar
+23/02/09 14:51:55 INFO Client: Uploading resource file:/home/hadoop/.ivy2/jars/io.delta_delta-storage-2.0.0.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/io.delta_delta-storage-2.0.0.jar
+23/02/09 14:51:55 INFO Client: Uploading resource file:/home/hadoop/.ivy2/jars/org.antlr_antlr4-runtime-4.8.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/org.antlr_antlr4-runtime-4.8.jar
+23/02/09 14:51:55 INFO Client: Uploading resource file:/home/hadoop/.ivy2/jars/org.codehaus.jackson_jackson-core-asl-1.9.13.jar -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/org.codehaus.jackson_jackson-core-asl-1.9.13.jar
+23/02/09 14:51:55 INFO Client: Uploading resource file:/etc/hudi/conf.dist/hudi-defaults.conf -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/hudi-defaults.conf
+23/02/09 14:51:56 INFO Client: Uploading resource file:/usr/lib/spark/python/lib/pyspark.zip -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/pyspark.zip
+23/02/09 14:51:56 INFO Client: Uploading resource file:/usr/lib/spark/python/lib/py4j-0.10.9.5-src.zip -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/py4j-0.10.9.5-src.zip
+23/02/09 14:51:56 WARN Client: Same path resource file:///home/hadoop/.ivy2/jars/io.delta_delta-core_2.12-2.0.0.jar added multiple times to distributed cache.
+23/02/09 14:51:56 WARN Client: Same path resource file:///home/hadoop/.ivy2/jars/io.delta_delta-storage-2.0.0.jar added multiple times to distributed cache.
+23/02/09 14:51:56 WARN Client: Same path resource file:///home/hadoop/.ivy2/jars/org.antlr_antlr4-runtime-4.8.jar added multiple times to distributed cache.
+23/02/09 14:51:56 WARN Client: Same path resource file:///home/hadoop/.ivy2/jars/org.codehaus.jackson_jackson-core-asl-1.9.13.jar added multiple times to distributed cache.
+23/02/09 14:51:56 INFO Client: Uploading resource file:/mnt/tmp/spark-bb254b8c-b8b4-4677-840c-d33ae92df8d2/__spark_conf__6610984398706528956.zip -> hdfs://ip-172-31-47-204.ec2.internal:8020/user/hadoop/.sparkStaging/application_1675953841469_0001/__spark_conf__.zip
+23/02/09 14:51:57 INFO SecurityManager: Changing view acls to: hadoop
+23/02/09 14:51:57 INFO SecurityManager: Changing modify acls to: hadoop
+23/02/09 14:51:57 INFO SecurityManager: Changing view acls groups to: 
+23/02/09 14:51:57 INFO SecurityManager: Changing modify acls groups to: 
+23/02/09 14:51:57 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+23/02/09 14:51:57 INFO Client: Submitting application application_1675953841469_0001 to ResourceManager
+23/02/09 14:51:58 INFO YarnClientImpl: Submitted application application_1675953841469_0001
+23/02/09 14:51:59 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:51:59 INFO Client: 
+	 client token: N/A
+	 diagnostics: [Thu Feb 09 14:51:59 +0000 2023] Scheduler has assigned a container for AM, waiting for AM container to be launched
+	 ApplicationMaster host: N/A
+	 ApplicationMaster RPC port: -1
+	 queue: default
+	 start time: 1675954318015
+	 final status: UNDEFINED
+	 tracking URL: http://ip-172-31-47-204.ec2.internal:20888/proxy/application_1675953841469_0001/
+	 user: hadoop
+23/02/09 14:52:00 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:01 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:02 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:03 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:04 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:05 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:06 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:07 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:08 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:09 INFO Client: Application report for application_1675953841469_0001 (state: ACCEPTED)
+23/02/09 14:52:10 INFO YarnClientSchedulerBackend: Add WebUI Filter. org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter, Map(PROXY_HOSTS -> ip-172-31-47-204.ec2.internal, PROXY_URI_BASES -> http://ip-172-31-47-204.ec2.internal:20888/proxy/application_1675953841469_0001), /proxy/application_1675953841469_0001
+23/02/09 14:52:10 INFO Client: Application report for application_1675953841469_0001 (state: RUNNING)
+23/02/09 14:52:10 INFO Client: 
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: 172.31.39.162
+	 ApplicationMaster RPC port: -1
+	 queue: default
+	 start time: 1675954318015
+	 final status: UNDEFINED
+	 tracking URL: http://ip-172-31-47-204.ec2.internal:20888/proxy/application_1675953841469_0001/
+	 user: hadoop
+23/02/09 14:52:10 INFO YarnClientSchedulerBackend: Application application_1675953841469_0001 has started running.
+23/02/09 14:52:10 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38765.
+23/02/09 14:52:10 INFO NettyBlockTransferService: Server created on ip-172-31-47-204.ec2.internal:38765
+23/02/09 14:52:10 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+23/02/09 14:52:10 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ip-172-31-47-204.ec2.internal, 38765, None)
+23/02/09 14:52:10 INFO BlockManagerMasterEndpoint: Registering block manager ip-172-31-47-204.ec2.internal:38765 with 912.3 MiB RAM, BlockManagerId(driver, ip-172-31-47-204.ec2.internal, 38765, None)
+23/02/09 14:52:10 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ip-172-31-47-204.ec2.internal, 38765, None)
+23/02/09 14:52:10 INFO BlockManager: external shuffle service port = 7337
+23/02/09 14:52:10 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ip-172-31-47-204.ec2.internal, 38765, None)
+23/02/09 14:52:10 INFO SingleEventLogFileWriter: Logging events to hdfs:/var/log/spark/apps/application_1675953841469_0001.inprogress
+23/02/09 14:52:11 INFO Utils: Using 50 preallocated executors (minExecutors: 0). Set spark.dynamicAllocation.preallocateExecutors to `false` disable executor preallocation.
+23/02/09 14:52:11 WARN YarnSchedulerBackend$YarnSchedulerEndpoint: Attempted to request executors before the AM has registered!
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /jobs: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /jobs/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /jobs/job: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /jobs/job/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages/stage: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages/stage/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages/pool: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages/pool/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /storage: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /storage/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /storage/rdd: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /storage/rdd/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /environment: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /environment/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /executors: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /executors/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /executors/threadDump: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /executors/threadDump/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /static: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /api: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /jobs/job/kill: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO YarnSchedulerBackend$YarnSchedulerEndpoint: ApplicationMaster registered as NettyRpcEndpointRef(spark-client://YarnAM)
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /stages/stage/kill: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO ServerInfo: Adding filter to /metrics/json: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+23/02/09 14:52:11 INFO YarnClientSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+
+Imprime os dados lidos da raw:
++---+--------+------+-------------------+-------------------+------------------+--------------------+--------------------+--------------------+----------+-----------------+------------------+-----------------+
+| id|    name|symbol|         data_added|       last_updated|             price|          volume_24h|  circulating_supply|        total_supply|max_supply|percent_change_1h|percent_change_24h|percent_change_7d|
++---+--------+------+-------------------+-------------------+------------------+--------------------+--------------------+--------------------+----------+-----------------+------------------+-----------------+
+|  1| Bitcoin|   BTC|2013-04-28 00:00:00|2023-02-08 11:42:00|23179.247156608017|2.633857612601962...|         1.9284737E7|         1.9284737E7|     2.1E7|       0.04876275|        0.86335563|       0.38063192|
+|  2|Ethereum|   ETH|2015-08-07 00:00:00|2023-02-08 11:42:00|1674.2442775758777|8.3754149281821165E9|    1.223738662178E8|    1.223738662178E8|      null|       0.20351307|        1.93482908|       5.85249111|
+|  3|  Tether|  USDT|2015-02-25 00:00:00|2023-02-08 11:42:00|1.0001283463842936|3.985448778805399E10|6.818238221860007E10|7.314176632123428E10|      null|       0.00306612|        0.00257604|       0.00318145|
+|  4|     BNB|   BNB|2017-07-25 00:00:00|2023-02-08 11:42:00|331.29975038638827|5.1560660466815096E8|1.5789992371957657E8|1.5997996359042934E8|     2.0E8|       0.32650012|        0.31141278|       7.44565065|
+|  5|USD Coin|  USDC|2018-10-08 00:00:00|2023-02-08 11:42:00|0.9999513635774716|3.8111899440433545E9|4.155412391032648E10|4.155412391032648E10|      null|      -0.00445001|       -0.00394073|        -0.008581|
++---+--------+------+-------------------+-------------------+------------------+--------------------+--------------------+--------------------+----------+-----------------+------------------+-----------------+
+only showing top 5 rows
+
+None
+
+Imprime o schema do dataframe lido da raw:
+root
+ |-- id: integer (nullable = true)
+ |-- name: string (nullable = true)
+ |-- symbol: string (nullable = true)
+ |-- data_added: timestamp (nullable = true)
+ |-- last_updated: timestamp (nullable = true)
+ |-- price: double (nullable = true)
+ |-- volume_24h: double (nullable = true)
+ |-- circulating_supply: double (nullable = true)
+ |-- total_supply: double (nullable = true)
+ |-- max_supply: double (nullable = true)
+ |-- percent_change_1h: double (nullable = true)
+ |-- percent_change_24h: double (nullable = true)
+ |-- percent_change_7d: double (nullable = true)
+
+None
+
+Escrevendo os dados lidos da raw para delta na processing zone...
+Dados escritos na processed com sucesso!
+
+ Top 10 Cryptomoedas com maior fornecimento de circulação  no mercado
+
++--------------------+--------------------+
+|                name|  circulating_supply|
++--------------------+--------------------+
+|              Shiryo|9.818467773109483...|
+|      Baby Doge Coin|1.151133330368390...|
+|            MetaPets|  5.1587381174314E16|
+|       RichQUACK.com|4.408596127415230...|
+|Football World Co...|  4.2259695518342E16|
+|             Pitbull|   4.019215806366E16|
+|               Spore|3.346256650642637...|
+|     NFT Art Finance| 2.52821746689876E16|
+|Wolf Safe Poor Pe...|1.350340102428960...|
+|             Hamster|          2.38423E15|
++--------------------+--------------------+
+
+None
+
+ Top 10 Cryptomoedas com preços mais altos de 2022
+
++------------------+------+------------------+
+|              name|symbol|             price|
++------------------+------+------------------+
+|    Maya Preferred|  MAYP|518446.48299414635|
+|          Unisocks| SOCKS| 35124.23217977772|
+|Wonderful Memories| WMEMO|28294.110820194233|
+|            renBTC|RENBTC|  24418.2560791571|
+|         Huobi BTC|  HBTC| 23600.94032430598|
+|              sBTC|  SBTC|23234.322744115674|
+| RSK Smart Bitcoin|  RBTC|23209.914248266483|
+|   Wrapped Bitcoin|  WBTC|23191.131249667193|
+|      Bitcoin BEP2|  BTCB|23186.387274109285|
+|BITCOIN ADDITIONAL|  BTCA|23179.247156608017|
++------------------+------+------------------+
+
+None
+
+Escrevendo os dados na curated zone...
+Dados escritos na curated com sucesso!
+
+Escrevendo os dados na curated zone...
+Dados escritos na curated com sucesso!
+Falha para escrever dados no Redshift: An error occurred while calling o128.save.
+: java.sql.SQLException: The connection attempt failed.
+	at com.amazon.redshift.util.RedshiftException.getSQLException(RedshiftException.java:56)
+	at com.amazon.redshift.Driver.connect(Driver.java:339)
+	at org.apache.spark.sql.execution.datasources.jdbc.connection.BasicConnectionProvider.getConnection(BasicConnectionProvider.scala:49)
+	at org.apache.spark.sql.execution.datasources.jdbc.connection.ConnectionProviderBase.create(ConnectionProvider.scala:102)
+	at org.apache.spark.sql.jdbc.JdbcDialect.$anonfun$createConnectionFactory$1(JdbcDialects.scala:122)
+	at org.apache.spark.sql.jdbc.JdbcDialect.$anonfun$createConnectionFactory$1$adapted(JdbcDialects.scala:118)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:50)
+	at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:45)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:75)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:73)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:84)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:103)
+	at org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:107)
+	at org.apache.spark.sql.execution.SQLExecution$.withTracker(SQLExecution.scala:224)
+	at org.apache.spark.sql.execution.SQLExecution$.executeQuery$1(SQLExecution.scala:114)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$7(SQLExecution.scala:139)
+	at org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:107)
+	at org.apache.spark.sql.execution.SQLExecution$.withTracker(SQLExecution.scala:224)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:139)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:245)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:138)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:779)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:68)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:100)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:96)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:615)
+	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:177)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:615)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:591)
+	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:96)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:83)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:81)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:124)
+	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:860)
+	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:390)
+	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:363)
+	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:247)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at com.amazon.redshift.core.RedshiftStream.<init>(RedshiftStream.java:86)
+	at com.amazon.redshift.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:111)
+	at com.amazon.redshift.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:224)
+	at com.amazon.redshift.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
+	at com.amazon.redshift.jdbc.RedshiftConnectionImpl.<init>(RedshiftConnectionImpl.java:322)
+	at com.amazon.redshift.Driver.makeConnection(Driver.java:502)
+	at com.amazon.redshift.Driver.connect(Driver.java:315)
+	... 52 more
+
+Falha para escrever dados no Redshift: An error occurred while calling o138.save.
+: java.sql.SQLException: The connection attempt failed.
+	at com.amazon.redshift.util.RedshiftException.getSQLException(RedshiftException.java:56)
+	at com.amazon.redshift.Driver.connect(Driver.java:339)
+	at org.apache.spark.sql.execution.datasources.jdbc.connection.BasicConnectionProvider.getConnection(BasicConnectionProvider.scala:49)
+	at org.apache.spark.sql.execution.datasources.jdbc.connection.ConnectionProviderBase.create(ConnectionProvider.scala:102)
+	at org.apache.spark.sql.jdbc.JdbcDialect.$anonfun$createConnectionFactory$1(JdbcDialects.scala:122)
+	at org.apache.spark.sql.jdbc.JdbcDialect.$anonfun$createConnectionFactory$1$adapted(JdbcDialects.scala:118)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:50)
+	at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:45)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:75)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:73)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:84)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:103)
+	at org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:107)
+	at org.apache.spark.sql.execution.SQLExecution$.withTracker(SQLExecution.scala:224)
+	at org.apache.spark.sql.execution.SQLExecution$.executeQuery$1(SQLExecution.scala:114)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$7(SQLExecution.scala:139)
+	at org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:107)
+	at org.apache.spark.sql.execution.SQLExecution$.withTracker(SQLExecution.scala:224)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:139)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:245)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:138)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:779)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:68)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:100)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:96)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:615)
+	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:177)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:615)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:591)
+	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:96)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:83)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:81)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:124)
+	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:860)
+	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:390)
+	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:363)
+	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:247)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at com.amazon.redshift.core.RedshiftStream.<init>(RedshiftStream.java:86)
+	at com.amazon.redshift.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:111)
+	at com.amazon.redshift.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:224)
+	at com.amazon.redshift.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
+	at com.amazon.redshift.jdbc.RedshiftConnectionImpl.<init>(RedshiftConnectionImpl.java:322)
+	at com.amazon.redshift.Driver.makeConnection(Driver.java:502)
+	at com.amazon.redshift.Driver.connect(Driver.java:315)
+	... 52 more
+
+[hadoop@ip-172-31-47-204 ~]$
