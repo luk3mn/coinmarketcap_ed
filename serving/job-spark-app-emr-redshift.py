@@ -63,8 +63,8 @@ def write_redshift(url_jdbc, table_name, dataframe):
         dataframe.write.format("jdbc")\
                 .options(url=url_jdbc,
                         driver='com.amazon.redshift.jdbc42.Driver',
-                        user='lukemn',
-                        password='1998LRmn',
+                        user='awsuser',
+                        password='Teste123',
                         dbtable=table_name
                         )\
                 .mode('overwrite')\

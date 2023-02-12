@@ -145,38 +145,3 @@ get_data(get_session_db,
          'USD',
          'd5b0fe62-33e9-475c-8211-d523cd51b9fa',
          'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest')
-
-# get_data('1',
-#          '5000',
-#          'USD',
-#          'd5b0fe62-33e9-475c-8211-d523cd51b9fa',
-#          'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest')
-
-
-
-# TESTE COM DADOS DA API
-
-# from requests import Request, Session
-# from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
-# import json
-
-# url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-# parameters = {
-#   'start':'1',
-#   'limit':'5000',
-#   'convert':'USD'
-# }
-# headers = {
-#   'Accepts': 'application/json',
-#   'X-CMC_PRO_API_KEY': 'd5b0fe62-33e9-475c-8211-d523cd51b9fa',
-# }
-
-# session = Session()
-# session.headers.update(headers)
-
-# try:
-#   response = session.get(url, params=parameters)
-#   data = json.loads(response.text)
-#   print(data)
-# except (ConnectionError, Timeout, TooManyRedirects) as e:
-#   print(e)
